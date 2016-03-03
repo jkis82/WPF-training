@@ -1,7 +1,7 @@
-﻿<Application x:Class="OneWayBinding.App"
+﻿<Application x:Class="ListBinding.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:OneWayBinding"
+             xmlns:local="clr-namespace:ListBinding"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

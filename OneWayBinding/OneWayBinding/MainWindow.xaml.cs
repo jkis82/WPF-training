@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Timers;
 using System.Windows;
 
-namespace OneWayBinding
+namespace ListBinding
 {
    /// <summary>
    /// Interaction logic for MainWindow.xaml

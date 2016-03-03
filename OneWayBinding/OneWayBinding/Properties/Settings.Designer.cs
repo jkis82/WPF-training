@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OneWayBinding.Properties
+namespace ListBinding.Properties
 {
 
 

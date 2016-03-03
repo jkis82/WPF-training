@@ -1,10 +1,14 @@
-﻿<Window x:Class="OneWayBinding.MainWindow"
+﻿<Window x:Class="ListBinding.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ListBinding"
         mc:Ignorable="d"
-        Title="Two-way binding demo" Height="350" Width="525" WindowStartupLocation="CenterScreen">
+        Title="List binding demo" Height="350" Width="525" WindowStartupLocation="CenterScreen">
+  <Window.Resources>
+      <local:DateConverter x:Key="DateConverter" />
+  </Window.Resources>
     <Grid>
       <Grid.ColumnDefinitions>
          <ColumnDefinition Width="5*"/>
@@ -22,7 +26,8 @@
              <DataTemplate>
                 <StackPanel Orientation="Horizontal">
                   <TextBlock Margin="0,0,5,0" Text="{Binding Title}"/>
-                  <TextBlock Text="{Binding Name}"/>
+                  <TextBlock Margin="0,0,5,0" Text="{Binding Name}"/>
+                  <TextBlock Margin="0,0,5,0" Text="{Binding StartDate, Converter={StaticResource DateConverter}}"/>
                </StackPanel>
              </DataTemplate>
           </ComboBox.ItemTemplate>
