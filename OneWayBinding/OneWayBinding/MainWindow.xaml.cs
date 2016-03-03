@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Timers;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace OneWayBinding
 {
@@ -21,10 +9,22 @@ namespace OneWayBinding
    public partial class MainWindow : Window
    {
       private Employee _employee = new Employee() {Name = "John", Title = "Programmer"};
+      private Timer    _timer    = new Timer();
+
       public MainWindow()
       {
          InitializeComponent();
          DataContext = _employee;
+
+         _timer.Interval  = 1000;
+         _timer.AutoReset = false;
+         _timer.Elapsed  += TimerOnElapsed;
+         _timer.Start();
+      }
+
+      private void TimerOnElapsed(object sender, ElapsedEventArgs elapsedEventArgs)
+      {
+         _employee.Title = "Timer timeout";
       }
    }
 }
