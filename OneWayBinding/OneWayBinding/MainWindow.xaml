@@ -3,12 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:OneWayBinding"
         mc:Ignorable="d"
         Title="Two-way binding demo" Height="350" Width="525" WindowStartupLocation="CenterScreen">
     <Grid>
       <Grid.ColumnDefinitions>
-         <ColumnDefinition Width="*"/>
+         <ColumnDefinition Width="5*"/>
          <ColumnDefinition Width="2*"/>
       </Grid.ColumnDefinitions>
        <Grid.RowDefinitions>
@@ -18,14 +17,15 @@
          <RowDefinition Height="Auto"/>
          <RowDefinition Height="Auto"/>
       </Grid.RowDefinitions>
-      <TextBlock Text="Name"  Grid.Row="0"/>
-      <TextBlock Text="Function" Grid.Row="1"/>
-      <TextBox Grid.Column="1" Text ="{Binding Name, Mode=TwoWay}"/>
-      <TextBox Grid.Column="1" Grid.Row ="1" Text ="{Binding Title, Mode=TwoWay}"/>
-      <TextBlock Grid.Row="2" Text="----------------"/>
-      <TextBlock Grid.Row="3" Text="Name"/>
-      <TextBlock Text="Function" Grid.Row="4"/>
-      <TextBlock Grid.Column="1" Grid.Row="3" Text ="{Binding Name}"/>
-      <TextBlock Grid.Column="1" Grid.Row ="4" Text ="{Binding Title}"/>
+       <ComboBox x:Name="CmbEmployees" ItemsSource="{Binding}">
+          <ComboBox.ItemTemplate>
+             <DataTemplate>
+                <StackPanel Orientation="Horizontal">
+                  <TextBlock Margin="0,0,5,0" Text="{Binding Title}"/>
+                  <TextBlock Text="{Binding Name}"/>
+               </StackPanel>
+             </DataTemplate>
+          </ComboBox.ItemTemplate>
+       </ComboBox>
    </Grid>
 </Window>

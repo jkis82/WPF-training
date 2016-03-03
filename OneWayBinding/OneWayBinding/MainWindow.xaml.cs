@@ -1,4 +1,6 @@
-﻿using System.Timers;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Timers;
 using System.Windows;
 
 namespace OneWayBinding
@@ -8,13 +10,13 @@ namespace OneWayBinding
    /// </summary>
    public partial class MainWindow : Window
    {
-      private Employee _employee = new Employee() {Name = "John", Title = "Programmer"};
-      private Timer    _timer    = new Timer();
+      private Timer                          _timer    = new Timer();
+      private ObservableCollection<Employee> _employees;
 
       public MainWindow()
       {
          InitializeComponent();
-         DataContext = _employee;
+         DataContext = _employees = Employee.GetEmployees();
 
          _timer.Interval  = 1000;
          _timer.AutoReset = false;
@@ -24,7 +26,7 @@ namespace OneWayBinding
 
       private void TimerOnElapsed(object sender, ElapsedEventArgs elapsedEventArgs)
       {
-         _employee.Title = "Timer timeout";
+         CmbEmployees.Dispatcher.Invoke(new Action(() => CmbEmployees.SelectedIndex = 0));
       }
    }
 }
