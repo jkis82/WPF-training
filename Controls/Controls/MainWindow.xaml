@@ -20,7 +20,7 @@
          <RowDefinition Height="Auto" />
       </Grid.RowDefinitions>
       <TextBlock Text="Your Name:" HorizontalAlignment="Right" Margin="5" Grid.Row="0"/>
-      <TextBox Grid.Column="1" Width="250" Height="20" HorizontalAlignment="Left"></TextBox>
+      <TextBox x:Name="FullName" Grid.Column="1" Width="250" Height="20" HorizontalAlignment="Left"></TextBox>
       <TextBlock Text="Sex:" HorizontalAlignment="Right" Margin="5" Grid.Row="1"/>
       <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
          <RadioButton Content="Male" Name="Male" GroupName="Sex" Margin="5" IsChecked="True"></RadioButton>
@@ -28,12 +28,12 @@
       </StackPanel>
       <TextBlock Text="Do you own:" HorizontalAlignment="Right" Margin="5" Grid.Row="2"/>
       <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
-         <CheckBox Content="Desktop" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top"/>
-         <CheckBox Content="Laptop" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top"/>
-         <CheckBox Content="Tablet" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top"/>
+         <CheckBox x:Name="Desktop" Content="Desktop" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top"/>
+         <CheckBox x:Name="Laptop" Content="Laptop" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top"/>
+         <CheckBox x:Name="Tablet" Content="Tablet" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top"/>
       </StackPanel>
       <TextBlock Text="Your profession:" HorizontalAlignment="Right" Margin="5" Grid.Row="3"/>
-      <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="5" Grid.Row="3" VerticalAlignment="Top" Width="120">
+      <ComboBox x:Name="Profession" Grid.Column="1" HorizontalAlignment="Left" Margin="5" Grid.Row="3" VerticalAlignment="Top" Width="120">
          <ComboBoxItem Content="Programmer"/>
          <ComboBoxItem Content="Designer"/>
          <ComboBoxItem Content="Architect"/>
@@ -41,7 +41,7 @@
          <ComboBoxItem Content="CEO"/>
       </ComboBox>
       <TextBlock Text="Delivery date:" HorizontalAlignment="Right" Margin="5" Grid.Row="4"/>
-      <Calendar Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top"/>
-      <Button Content="Save" HorizontalAlignment="Center" Margin="5" Grid.Row="5" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2"/>
+      <Calendar x:Name="DeliveryDate" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top"/>
+      <Button x:Name ="BtnSave" Content="Save" HorizontalAlignment="Center" Margin="5" Grid.Row="5" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2" Click="BtnSave_Click"/>
    </Grid>
 </Window>
