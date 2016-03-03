@@ -22,6 +22,7 @@ namespace Controls
    {
       public MainWindow()
       {
+         // One change to prevent fast-forward
          InitializeComponent();
       }
    }
