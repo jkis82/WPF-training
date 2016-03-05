@@ -3,30 +3,38 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TestAdvices"
         xmlns:viewmodel="clr-namespace:TestAdvices.ViewModel"
+        xmlns:converters="clr-namespace:TestAdvices.View.Converter"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MVVM demo H/E advices" Height="350" Width="525">
    <Window.DataContext>
       <viewmodel:AdviceViewModel></viewmodel:AdviceViewModel>
    </Window.DataContext>
+   <Window.Resources>
+      <converters:IsActiveToColourConverter x:Key="IsActiveToColourConverter" />
+   </Window.Resources>
     <Grid>
        <Grid.RowDefinitions>
          <RowDefinition Height="Auto" />
-         <RowDefinition Height="*" />
+         <RowDefinition Height="Auto" />
       </Grid.RowDefinitions>
        <ListView x:Name="AdviceListView" Margin="5" ItemsSource="{Binding VmAdvices}">
           <ListView.ItemTemplate>
              <DataTemplate>
                 <StackPanel Orientation="Horizontal">
-                  <TextBlock Margin="5" Text="{Binding State}" />
-                  <TextBlock Margin="5" Text="{Binding Advice.Id}" />
+                  <Button Margin="5" Width="80"
+                          Content="{Binding State}" 
+                          Command="{Binding InvokeTransitionCommand}"
+                          IsEnabled="{Binding IsEnabled}"></Button>
+                  <Rectangle Margin="5" Width="40" Height="20" Fill="{Binding Mode=OneWay, Path='Advice.IsActive', Converter={StaticResource IsActiveToColourConverter} }"/>
                   <TextBlock Margin="5" Text="{Binding Advice.Name}" />
-                  <TextBlock Margin="5" Text="{Binding Advice.IsActive}" />
                </StackPanel>
              </DataTemplate>
           </ListView.ItemTemplate>
        </ListView>
-       <Button Grid.Row="1" HorizontalAlignment="Center" Height="20" Width="120">Ok</Button>
+       <Button Grid.Row="1" 
+               HorizontalAlignment="Center"
+               Height="20" Width="120" 
+               Command="{Binding CommitTransitionCommand}">Ok</Button>
     </Grid>
 </Window>
