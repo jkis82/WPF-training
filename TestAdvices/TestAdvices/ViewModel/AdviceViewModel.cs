@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Input;
 using TestAdvices.Model;
 using TestAdvices.ViewModel.Commands;
@@ -29,6 +27,8 @@ namespace TestAdvices.ViewModel
 
       public AdviceViewModel(AdviceDataService adviceDataService)
       {
+         Thread.CurrentThread.CurrentUICulture = new CultureInfo("nl-NL");
+
          _adviceDataService = adviceDataService;
 
          LoadVmAdvices();

@@ -12,6 +12,7 @@
    </Window.DataContext>
    <Window.Resources>
       <converters:IsActiveToColourConverter x:Key="IsActiveToColourConverter" />
+      <converters:StateToTextConverter      x:Key="StateToTextConverter" />
    </Window.Resources>
     <Grid>
        <Grid.RowDefinitions>
@@ -23,7 +24,7 @@
              <DataTemplate>
                 <StackPanel Orientation="Horizontal">
                   <Button Margin="5" Width="80"
-                          Content="{Binding State}" 
+                          Content="{Binding Path='State', Converter={StaticResource StateToTextConverter}}" 
                           Command="{Binding InvokeTransitionCommand}"
                           IsEnabled="{Binding IsEnabled}"></Button>
                   <Rectangle Margin="5" Width="40" Height="20" Fill="{Binding Mode=OneWay, Path='Advice.IsActive', Converter={StaticResource IsActiveToColourConverter} }"/>

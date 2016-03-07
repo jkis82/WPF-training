@@ -22,7 +22,7 @@ namespace TestAdvices.ViewModel
    {
       private VmAdviceState _state;
       private Advice        _advice;
-      private bool _isEnabled;
+      private bool          _isEnabled;
 
       public ICommand InvokeTransitionCommand { get; private set; }
 
