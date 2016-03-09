@@ -61,6 +61,42 @@ namespace TestAdvices.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advices.
+        /// </summary>
+        internal static string Advices {
+            get {
+                return ResourceManager.GetString("Advices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are {0} active advices.
+        /// </summary>
+        internal static string AdvicesMultiActive {
+            get {
+                return ResourceManager.GetString("AdvicesMultiActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no active advices.
+        /// </summary>
+        internal static string AdvicesNoneActive {
+            get {
+                return ResourceManager.GetString("AdvicesNoneActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is one active advice.
+        /// </summary>
+        internal static string AdvicesOneActive {
+            get {
+                return ResourceManager.GetString("AdvicesOneActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Active.
         /// </summary>
         internal static string StateActive {

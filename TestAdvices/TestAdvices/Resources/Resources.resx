@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Advices" xml:space="preserve">
+    <value>Advices</value>
+  </data>
+  <data name="AdvicesMultiActive" xml:space="preserve">
+    <value>There are {0} active advices</value>
+  </data>
+  <data name="AdvicesNoneActive" xml:space="preserve">
+    <value>There are no active advices</value>
+  </data>
+  <data name="AdvicesOneActive" xml:space="preserve">
+    <value>There is one active advice</value>
+  </data>
   <data name="StateActive" xml:space="preserve">
     <value>Active</value>
   </data>

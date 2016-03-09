@@ -60,10 +60,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\CommonStringPrefix.cs" />
     <Compile Include="View\Converter\IsActiveToColourConverter.cs" />
     <Compile Include="View\Converter\IsActiveToImageConverter.cs" />
     <Compile Include="View\Converter\StateToTextConverter.cs" />
-    <Page Include="AdviceView.xaml">
+    <Page Include="CustomSelectView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -71,13 +72,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Model\Advice.cs" />
+    <Compile Include="Model\HmiElementInfo.cs" />
     <Compile Include="Model\AdviceDataService.cs" />
-    <Compile Include="ViewModel\AdviceViewModel.cs" />
+    <Compile Include="ViewModel\CustomSelectViewModel.cs" />
     <Compile Include="ViewModel\Commands\CustomCommand.cs" />
-    <Compile Include="ViewModel\VmAdvice.cs" />
-    <Compile Include="AdviceView.xaml.cs">
-      <DependentUpon>AdviceView.xaml</DependentUpon>
+    <Compile Include="ViewModel\VmHmiElementInfo.cs" />
+    <Compile Include="CustomSelectView.xaml.cs">
+      <DependentUpon>CustomSelectView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using TestAdvices.Model;
 using TestAdvices.ViewModel.Commands;
@@ -18,11 +14,11 @@ namespace TestAdvices.ViewModel
       Stopping
    }
 
-   public class VmAdvice : INotifyPropertyChanged
+   public class VmHmiElementInfo : INotifyPropertyChanged
    {
-      private VmAdviceState _state;
-      private Advice        _advice;
-      private bool          _isEnabled;
+      private VmAdviceState  _state;
+      private HmiElementInfo _advice;
+      private bool           _isEnabled;
 
       public ICommand InvokeTransitionCommand { get; private set; }
 
@@ -36,7 +32,7 @@ namespace TestAdvices.ViewModel
          }
       }
 
-      public Advice Advice
+      public HmiElementInfo Advice
       {
          get { return _advice; }
          set
@@ -52,7 +48,7 @@ namespace TestAdvices.ViewModel
          set { _isEnabled = value; RaisePropertyChanged("IsEnabled"); }
       }
 
-      public VmAdvice(Advice advice)
+      public VmHmiElementInfo(HmiElementInfo advice)
       {
          this.Advice    = advice;
          this.State     = (advice.IsActive) ? VmAdviceState.Active : VmAdviceState.InActive;
@@ -95,7 +91,7 @@ namespace TestAdvices.ViewModel
 
       public event PropertyChangedEventHandler PropertyChanged;
 
-      internal void EvaluateEnableState(List<VmAdvice> advicesStarting, List<VmAdvice> advicesStopping)
+      internal void EvaluateEnableState(List<VmHmiElementInfo> advicesStarting, List<VmHmiElementInfo> advicesStopping)
       {
          if (advicesStarting.Count >= 1)
             IsEnabled = (State == VmAdviceState.Starting);

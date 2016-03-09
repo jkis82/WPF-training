@@ -8,7 +8,7 @@ namespace TestAdvices.Model
 {
    public class AdviceDataService
    {
-      private List<Advice> _lstAdvices;
+      private List<HmiElementInfo> _lstAdvices;
 
       public AdviceDataService()
       {
@@ -17,33 +17,40 @@ namespace TestAdvices.Model
 
       private void LoadAdvices()
       {
-         _lstAdvices = new List<Advice>();
+         _lstAdvices = new List<HmiElementInfo>();
 
-         _lstAdvices.Add(new Advice() { Id = 1, IsActive = false, Name = "Advice 1"});
-         _lstAdvices.Add(new Advice() { Id = 2, IsActive = false, Name = "Advice 2"});
-         _lstAdvices.Add(new Advice() { Id = 3, IsActive = false, Name = "Advice 3"});
-         _lstAdvices.Add(new Advice() { Id = 4, IsActive = false, Name = "Advice 4"});
-         _lstAdvices.Add(new Advice() { Id = 5, IsActive = false, Name = "Advice 5"});
-         _lstAdvices.Add(new Advice() { Id = 6, IsActive = false, Name = "Advice 6"});
-         _lstAdvices.Add(new Advice() { Id = 7, IsActive = false, Name = "Advice 7"});
+         for (int i = 1; i < 8; i++)
+         {
+            string fmtDescription = (i == 1) ? "dit is advies {0}" : "advies {0}";
+
+            _lstAdvices.Add(new HmiElementInfo()
+            {
+               Id          = i,
+               Description = "H/E procedure " + string.Format(fmtDescription, i),
+               IsActive    = false,
+               IsVisible   = true,
+               IsEnabled   = true,
+               Label       = string.Format("HMI100{0}", i)
+            });
+         }
       }
 
-      public Advice GetAdvice(int Id)
+      public HmiElementInfo GetAdvice(int Id)
       {
          return _lstAdvices.FirstOrDefault(x => x.Id == Id);
       }
 
-      public List<Advice> GetAllAdvices()
+      public List<HmiElementInfo> GetAllAdvices()
       {
          return _lstAdvices;
       }
 
-      public void UpdateAdvice(Advice advice)
+      public void UpdateAdvice(HmiElementInfo advice)
       {
          if (advice == null)
             throw new ArgumentNullException("advice");
 
-         Advice adviceToUpdate = GetAdvice(advice.Id);
+         HmiElementInfo adviceToUpdate = GetAdvice(advice.Id);
 
          if (adviceToUpdate == null)
             throw new Exception("Cannot find advice with id: " + advice.Id.ToString());
