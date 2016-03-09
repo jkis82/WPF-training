@@ -28,7 +28,7 @@
                   <Button Margin="5" Width="80"
                           Content="{Binding Path='State', Converter={StaticResource StateToTextConverter}}" 
                           Command="{Binding InvokeTransitionCommand}"
-                          IsEnabled="{Binding IsEnabled}"></Button>
+                          IsEnabled="{Binding IsEnabled}" />
                   <Rectangle Margin="5" Width="40" Height="20" Fill="{Binding Mode=OneWay, Path='Advice.IsActive', Converter={StaticResource IsActiveToColourConverter} }"/>
                   <TextBlock Margin="5" Text="{Binding Advice.Name}" />
                </StackPanel>
