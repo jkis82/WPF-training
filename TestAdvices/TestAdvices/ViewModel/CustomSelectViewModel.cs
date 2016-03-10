@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using System.Windows;
 using System.Windows.Input;
 using TestAdvices.Model;
 using TestAdvices.Utilities;
@@ -14,15 +16,18 @@ namespace TestAdvices.ViewModel
 {
    public class CustomSelectViewModel : INotifyPropertyChanged
    {
-      public event PropertyChangedEventHandler PropertyChanged;
+      public event PropertyChangedEventHandler PropertyChanged;      // *** Do not copy to AAF ***
 
       #region Interface to View
 
-      private string _adviceSummaryText;
-      private string _caption;
+      private string     _adviceSummaryText;
+      private string     _caption;
+      private Visibility _listboxVisibility;
 
-      public ObservableCollection<VmHmiElementInfo> HmiElements { get; private set; } 
+      public ObservableCollection<VmHmiElementInfo> HmiElements { get; private set; }
       public ICommand CommitTransitionCommand { get; private set; }
+      public ICommand RollbackTransitionCommand { get; private set; }
+      public ICommand ToggleListboxVisibilityCommand { get; private set; }
 
       public string AdviceSummaryText
       {
@@ -36,6 +41,20 @@ namespace TestAdvices.ViewModel
          private set { if (_caption != value) { _caption = value; OnPropertyChanged(); } }
       }
 
+      public Visibility ListboxVisibility
+      {
+         get
+         {
+            return _listboxVisibility;
+         }
+
+         set
+         {
+            _listboxVisibility = value;
+            OnPropertyChanged();
+         }
+      }
+
       #endregion
 
       private List<HmiElementInfo> _hmiElementList = new List<HmiElementInfo>();
@@ -45,6 +64,7 @@ namespace TestAdvices.ViewModel
          Thread.CurrentThread.CurrentUICulture = new CultureInfo("nl-NL"); // Todo: Remove
 
          HmiElements = new ObservableCollection<VmHmiElementInfo>();
+         ListboxVisibility = Visibility.Collapsed;
 
          CreateHmiElements(new AdviceDataService().GetAllAdvices());    // Todo: Remove
          LoadCommands();
@@ -55,6 +75,31 @@ namespace TestAdvices.ViewModel
       private void LoadCommands()
       {
          CommitTransitionCommand = new CustomCommand(CommitTransition, CanCommitTransition);
+         RollbackTransitionCommand = new CustomCommand(RollbackTransition, CanRollbackTransition);
+         ToggleListboxVisibilityCommand = new CustomCommand(ToggleListboxVisibility, CanToggleListboxVisibility);
+      }
+
+      private void RollbackTransition(object obj)
+      {
+         foreach (var vmAdvice in HmiElements)
+            vmAdvice.RollbackTransition();
+
+         FinishTransaction();
+      }
+
+      private bool CanRollbackTransition(object obj)
+      {
+         return true;
+      }
+
+      private bool CanToggleListboxVisibility(object obj)
+      {
+         return true;
+      }
+
+      private void ToggleListboxVisibility(object obj)
+      {
+         ListboxVisibility = (ListboxVisibility == Visibility.Visible) ? Visibility.Collapsed : Visibility.Visible;
       }
 
       /// <summary>
@@ -66,12 +111,19 @@ namespace TestAdvices.ViewModel
          foreach (var vmAdvice in HmiElements)
             vmAdvice.CommitTransition();
 
+         FinishTransaction();
+      }
+
+      private void FinishTransaction()
+      {
          List<HmiElementInfo> newInfo = new List<HmiElementInfo>();
 
          foreach (VmHmiElementInfo info in HmiElements)
             newInfo.Add(info.Advice);
 
          UpdateHmiElements(newInfo);
+
+         ListboxVisibility = Visibility.Collapsed;
       }
 
       private bool CanCommitTransition(object obj)
@@ -200,6 +252,6 @@ namespace TestAdvices.ViewModel
       protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
       {
          PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-      }
+      } // *** Do not copy to AAF ***
    }
 }

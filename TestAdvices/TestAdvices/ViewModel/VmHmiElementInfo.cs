@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Input;
 using TestAdvices.Model;
@@ -101,6 +102,16 @@ namespace TestAdvices.ViewModel
             IsEnabled = true;
       }
 
+      public void RollbackTransition()
+      {
+         switch (State)
+         {
+            case VmAdviceState.Starting:
+            case VmAdviceState.Stopping:
+               InvokeTransition(null);
+               break;
+         }
+      }
 
       private void RaisePropertyChanged(string propertyName)
       {

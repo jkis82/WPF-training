@@ -97,6 +97,16 @@ namespace TestAdvices.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ComboxboxArrow {
+            get {
+                object obj = ResourceManager.GetObject("ComboxboxArrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Active.
         /// </summary>
         internal static string StateActive {
@@ -129,6 +139,16 @@ namespace TestAdvices.Resources {
         internal static string StateStopping {
             get {
                 return ResourceManager.GetString("StateStopping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap T_client {
+            get {
+                object obj = ResourceManager.GetObject("T_client", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
